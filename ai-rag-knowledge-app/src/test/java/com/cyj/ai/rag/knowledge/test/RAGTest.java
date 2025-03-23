@@ -55,7 +55,7 @@ public class RAGTest {
 
     @Test
     public void testAskQuestion() {
-        String message = "方超，今年几岁了";
+        String message = "webflux是什么？";
         String SYSTEM_PROMPT = """
                 Use the information from the DOCUMENTS section to provide accurate answers but act as if you knew this information innately.
                 If unsure, simply state that you don't know.
@@ -66,7 +66,7 @@ public class RAGTest {
         // 先从向量数据库搜索
         final SearchRequest searchRequest = SearchRequest.defaults().withQuery(message)
                 .withTopK(5)
-                .withFilterExpression("knowledge=='知识库名称'");
+                .withFilterExpression("knowledge=='webflux'");
         final List<Document> searchResults = pgVectorStore.similaritySearch(searchRequest);
         final String resultStrings = searchResults.stream().map(Document::getContent).collect(Collectors.joining());
         final Message rawMessage = new SystemPromptTemplate(SYSTEM_PROMPT).createMessage(Map.of("documents", resultStrings));
