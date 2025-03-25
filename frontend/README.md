@@ -1,80 +1,50 @@
-# AI Chat Frontend
+# Ollama 聊天界面
 
-A Vue 3 frontend application for conversational AI interactions using a chat interface.
+基于Vue 3、TypeScript、Pinia、TailwindCSS和HeadlessUI的Ollama聊天界面。
 
-## Tech Stack
+## 功能特点
+
+- 多聊天会话管理
+- 支持多种Ollama模型
+- 流式响应渲染
+- 响应式设计
+- 消息复制
+
+## 技术栈
 
 - Vue 3
-- TypeScript
-- Vite
-- Pinia (State Management)
-- Tailwind CSS (Styling)
-- Headless UI (UI Components)
-- PNPM (Package Manager)
+- TypeScript 
+- Pinia (状态管理)
+- Vue Router (路由)
+- TailwindCSS (样式)
+- HeadlessUI (UI组件)
+- EventSource (流式响应)
 
-## Features
-
-- Conversational chat interface with an AI assistant
-- Streaming responses from the backend
-- Responsive design
-- Message history
-- TypeScript support
-
-## Setup and Development
-
-### Prerequisites
-
-- Node.js (v18+)
-- PNPM package manager
-
-### Installation
+## 安装
 
 ```bash
-# Install dependencies
-pnpm install
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
 ```
 
-### Development
+## 使用方法
 
-```bash
-# Start the development server
-pnpm dev
-```
+1. 点击"新聊天"按钮创建一个新的聊天会话
+2. 选择要使用的模型（deepseek-r1等）
+3. 输入消息并发送
+4. 查看AI助手的回复
 
-This will start the development server at http://localhost:5173
+## API接口
 
-### Building for Production
-
-```bash
-# Build the application
-pnpm build
-
-# Preview the production build
-pnpm serve
-```
-
-## API Integration
-
-The application interfaces with the backend `OllamaController.generateStream` endpoint to generate AI responses. The API communication is handled through the Pinia store (`src/stores/chat.ts`).
-
-## Folder Structure
+应用通过流式API接口与Ollama进行通信：
 
 ```
-frontend/
-├── public/              # Static assets
-├── src/
-│   ├── assets/          # Application assets
-│   ├── components/      # Vue components
-│   ├── stores/          # Pinia stores
-│   ├── App.vue          # Main application component
-│   ├── main.ts          # Application entry point
-│   └── style.css        # Global styles with Tailwind
-├── index.html
-├── tailwind.config.js   # Tailwind configuration
-├── tsconfig.json        # TypeScript configuration
-└── vite.config.ts       # Vite configuration
+GET /api/v1/ollama/generate_stream?model={model}&message={message}
 ```
 
-## License
+## 许可证
 
-MIT
+MIT 
